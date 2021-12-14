@@ -23,15 +23,12 @@ function make_tsstatplot(Y, t, y_labels, x_label, y_lim, area, line)
 %      - 'median' for the median value.
 %
     if nargin < 7
-        kind = 'plot';
-    end
-    if nargin < 6
         line = 'mean';
     end
-    if nargin < 5
+    if nargin < 6
         area = 'minmax';
     end
-    if nargin < 4
+    if nargin < 5
         y_lim = nan(2);
     end
     if nargin < 4
@@ -53,7 +50,7 @@ function make_tsstatplot(Y, t, y_labels, x_label, y_lim, area, line)
             case 'minmax'
                 Y_upper = max(Y{iy}, [], 2);
                 Y_lower = min(Y{iy}, [], 2);
-                fill_labels = 'min - max';
+                fill_labels = 'min, max';
             case 'std'
                 Y_avg = mean(Y{iy}, 2);
                 Y_std = std(Y{iy}, [], 2);
