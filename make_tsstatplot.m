@@ -95,7 +95,9 @@ function make_tsstatplot(Y, t, y_labels, x_label, y_lim, area, line)
     end
     ylim(axes_limits_with_margin([Y_upper Y_lower], 0.1, y_lim, y_lim))
     set(gca, 'TickLabelInterpreter', 'latex')
-    xlabel(x_label, 'Interpreter', 'Latex')
+    if x_label
+        xlabel(x_label, 'Interpreter', 'Latex')
+    end
     ylabel(strjoin(y_labels, ', '), 'Interpreter', 'latex')
     legend(line_labels, 'Interpreter', 'latex', 'Location', 'best')
     grid on

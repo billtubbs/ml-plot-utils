@@ -4,6 +4,7 @@ clear all; close all
 
 
 %% discrete-time SISO system
+
 Ts = 0.5;
 nT = 10;
 t = Ts*(0:nT)';
@@ -12,13 +13,21 @@ U(t >= 1, :) = 1;
 G = tf(1, [1 1], Ts);
 [Y, t] = lsim(G,U,t);
 R = ones(nT+1, 1);
-u_labels = {'u(t)'};
-y_labels = {'y(t)'};
-r_labels = {'r'};
+u_labels = {'$u(t)$'};
+y_labels = {'$y(t)$'};
+r_labels = {'$r(t)$'};
 
 figure(1)
-make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
-    nan(2), nan(2), 'stairs')
+titles_text = {'(a) Outputs', '(b) Inputs'};
+make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, '$t$', ...
+    nan(2), nan(2), titles_text, 'stairs')
+
+figure(2)
+x_label = '$t$ (seconds)';
+y1_lim = [-1 1];
+y2_lim = [-1 1];
+make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, x_label, ...
+    y1_lim, y2_lim, {'', ''}, 'stairs')
 
 
 %% Continuous-time 2x2 system
@@ -33,9 +42,10 @@ G = [tf(1, [1 1]) 0;
 R = zeros(nT+1, 2);
 R(t >= 1, 1) = 1;
 R(t >= 3, 2) = -1;
-u_labels = {'u_1(t)', 'u_2(t)'};
-y_labels = {'y_1(t)', 'y_2(t)'};
-r_labels = {'r_1(t)', 'r_2(t)'};
+u_labels = string2latex({'u_1(t)', 'u_2(t)'});
+y_labels = string2latex({'y_1(t)', 'y_2(t)'});
+r_labels = string2latex({'r_1(t)', 'r_2(t)'});
 
-figure(2)
+figure(3)
 make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels)
+

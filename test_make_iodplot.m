@@ -1,4 +1,4 @@
-% Test function make_iodplot.m
+% Test functions make_iodplot.m and make_iodmplot.m
 
 clear all; close all
 
@@ -12,11 +12,22 @@ U(t >= 1, :) = 1;
 G = tf(1, [1 1], Ts);
 [Y, t] = lsim(G,U,t);
 Y_m = Y + 0.1*randn(size(Y));  % add measurement noise
-u_labels = {'u(t)'};
-y_labels = {'y(t)', 'y_m(t)'};
+u_labels = {'$u(t)$'};
+y_labels = {'$y(t)$', '$y_m(t)$'};
+id_data = iddata(Y_m,U,Ts);
+model = polyest(id_data, [0 1 0 0 1 1]);
+[Y_model, t] = lsim(model,U,t);
 
-figure(1)
-make_iodplot(Y, Y_m, t, U, u_labels, y_labels, nan(2), nan(2), 'stairs')
+figure(1); clf
+titles_text = {'(a) Outputs', '(b) Inputs'};
+make_iodplot(Y, Y_m, t, U, u_labels, y_labels, '$t$', nan(2), nan(2), ...
+    titles_text, 'stairs')
+
+figure(2); clf
+titles_text = {'(a) Outputs', '(b) Inputs'};
+y_labels = {'$y(t)$', '$y_m(t)$', '$y_{model}(t)$'};
+make_iodmplot(Y, Y_m, Y_model, t, U, u_labels, y_labels, '$t$', ...
+    nan(2), nan(2), titles_text, 'stairs')
 
 
 %% Continuous-time 2x2 system
@@ -29,8 +40,20 @@ G = [tf(1, [1 1]) 0;
      0            tf(1, [2 1])];
 [Y, t] = lsim(G,U,t);
 Y_m = Y + 0.1*randn(size(Y));  % add measurement noise
-u_labels = {'u_1(t)', 'u_2(t)'};
-y_labels = {'y_1(t)', 'y_2(t)', 'y_{m,1}(t)', 'y_{m,2}(t)'};
+u_labels = string2latex({'u_1(t)', 'u_2(t)'});
+y_labels = string2latex({'y_1(t)', 'y_2(t)', 'y_{m,1}(t)', 'y_{m,2}(t)'});
 
-figure(2)
-make_iodplot(Y, Y_m, t, U, u_labels, y_labels)
+Ts = diff(t(1:2));
+id_data = iddata(Y_m,U,Ts);
+poly_order = [zeros(2, 2) ones(2, 2) zeros(2, 1) zeros(2, 1) ones(2, 2) ones(2, 2)];
+model = polyest(id_data, poly_order);
+[Y_model, t] = lsim(model,U,t);
+
+figure(3); clf
+x_label = '$t$ (seconds)';
+make_iodplot(Y, Y_m, t, U, u_labels, y_labels, x_label)
+
+figure(4); clf
+y_labels = string2latex({'y_1(t)', 'y_2(t)', 'y_{m,1}(t)', 'y_{m,2}(t)', ...
+    'y_{model,1}(t)', 'y_{model,2}(t)'});
+make_iodmplot(Y, Y_m, Y_model, t, U, u_labels, y_labels, '$t$ (seconds)')
