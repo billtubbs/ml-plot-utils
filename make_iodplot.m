@@ -2,9 +2,9 @@ function make_iodplot(Y, Y_m, t, U, u_labels, y_labels, ...
     x_label, y1_lim, y2_lim, titles_text, kind)
 % make_iodplot(Y, Y_m, t, U, u_labels, y_labels, ...
 %     x_label, y1_lim, y2_lim, titles_text, kind)
-% Time series plot of input signal, true output signal and measured
+% Time series plots of input signal, true output signal, and measured
 % output data.
-%
+
     if nargin < 11
         kind = 'plot';
     end

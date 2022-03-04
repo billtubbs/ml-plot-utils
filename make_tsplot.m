@@ -1,6 +1,6 @@
 function make_tsplot(Y, t, y_labels, x_label, y_lim, title_text, kind)
 % make_tsplot(Y, t, y_labels, x_label, y_lim, title_text, kind)
-% Time series plot of one or more signals.
+% Time series plots of one or more signals.
 
     if nargin < 7
         kind = 'plot';

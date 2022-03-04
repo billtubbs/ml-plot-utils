@@ -2,8 +2,7 @@ function make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
     x_label, y1_lim, y2_lim, titles_text, kind)
 % make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
 %     x_label, y1_lim, y2_lim, titles_text, kind)
-% Time series plot of input, output and reference
-% signals
+% Time series plots of input, output and reference signals
 
     if nargin < 12
         kind = 'plot';

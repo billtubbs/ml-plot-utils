@@ -1,4 +1,8 @@
 function [lconf, uconf] = confidence_intervals_auto(N, yc, maxlag, alpha)
+% [lconf, uconf] = confidence_intervals_auto(N, yc, maxlag, alpha)
+% Calculate lower and upper confidence limits for auto-
+% correlation coefficients.
+
     % See Eq.n C.34 in the notes
     assert(yc(maxlag+1) == 1)  % value for lag 0
     ryy = yc(maxlag+1:end-1);  % take positive lags only

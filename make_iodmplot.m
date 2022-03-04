@@ -2,8 +2,8 @@ function make_iodmplot(Y, Y_m, Y_model, t, U, u_labels, y_labels, ...
     x_label, y1_lim, y2_lim, titles_text, kind)
 % make_iodmplot(Y, Y_m, Y_model, t, U, u_labels, y_labels, ...
 %     x_label, y1_lim, y2_lim, titles_text, kind)
-% Time series plot of input signal, true output signal, measured
-% output and model predicted output data.
+% Time series plots of input signal, true output signal, measured
+% output, and model predicted output data.
 %
     if nargin < 12
         kind = 'plot';

@@ -1,6 +1,6 @@
 function make_tsstatplot(Y, t, y_labels, x_label, y_lim, area, line)
 % make_tsstatplot(Y, t, y_labels, x_label, y_lim, area, line)
-% Time-series plot of the statistics of groups of signals.
+% Time-series plots of the statistics of groups of signals.
 %
 % Arguments
 %   Y : array of group data or cell array of group data
