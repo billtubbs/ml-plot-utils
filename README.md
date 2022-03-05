@@ -6,7 +6,6 @@ MATLAB scripts to facilitate common plotting tasks for data from dynamical syste
 ### 1. Input-output plots for a dynamic system
 
 ```MATLAB
-
 % Simulate continuous-time 2x2 system
 t = linspace(0, 10, 101)';
 nT = size(t, 1) - 1;
@@ -24,12 +23,30 @@ figure
 make_ioplot(Y, t, U, u_labels, y_labels)
 
 % Save plot as pdf file
-save_fig_to_pdf('ioplot3.pdf')
+save_fig_to_pdf('plots/ioplot3.pdf')
 ```
 
-<img src='plots/ioplot3.pdf' width=400>
+<img src='plots/ioplot3.png' width=400>
 
-## Contents
+### 2. Time-series plot of the statistics of a group of signals.
+
+```MATLAB
+% Generate two groups of 10 random signals
+t = 0.5*(0:20)';
+Y = {randn(21, 10), randn(21, 10)+2*sin(t)};
+
+% Make statistics plot
+figure
+y_labels = {'$y_1(t)$', '$y_2(t)$'};
+make_tsstatplot(Y, t, y_labels, '$t$ (mins)', nan(2), 'minmax', 'mean')
+
+% Save plot as pdf file
+save_fig_to_pdf('plots/tsstatplot4.pdf')
+```
+
+<img src='plots/tsstatplot4.png' width=400>
+
+## Full contents
 
 Main plot functions
 
