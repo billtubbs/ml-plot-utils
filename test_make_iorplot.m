@@ -2,6 +2,12 @@
 
 clear all; close all
 
+% Directory to save test plots
+plot_dir = 'plots';
+if ~isfolder(plot_dir)
+    mkdir(plot_dir)
+end
+
 
 %% discrete-time SISO system
 
@@ -21,6 +27,7 @@ figure(1)
 titles_text = {'(a) Outputs', '(b) Inputs'};
 make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, '$t$', ...
     nan(2), nan(2), titles_text, 'stairs')
+save_fig_to_pdf(fullfile(plot_dir, 'iorplot1.pdf'))
 
 figure(2)
 x_label = '$t$ (seconds)';
@@ -28,6 +35,7 @@ y1_lim = [-1 1];
 y2_lim = [-1 1];
 make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, x_label, ...
     y1_lim, y2_lim, {'', ''}, 'stairs')
+save_fig_to_pdf(fullfile(plot_dir, 'iorplot1.pdf'))
 
 
 %% Continuous-time 2x2 system
@@ -48,4 +56,4 @@ r_labels = string2latex({'r_1(t)', 'r_2(t)'});
 
 figure(3)
 make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels)
-
+save_fig_to_pdf(fullfile(plot_dir, 'iorplot3.pdf'))

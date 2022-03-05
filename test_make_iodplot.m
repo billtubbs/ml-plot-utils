@@ -2,6 +2,12 @@
 
 clear all; close all
 
+% Directory to save test plots
+plot_dir = 'plots';
+if ~isfolder(plot_dir)
+    mkdir(plot_dir)
+end
+
 
 %% discrete-time SISO system
 Ts = 0.5;
@@ -22,12 +28,14 @@ figure(1); clf
 titles_text = {'(a) Outputs', '(b) Inputs'};
 make_iodplot(Y, Y_m, t, U, u_labels, y_labels, '$t$', nan(2), nan(2), ...
     titles_text, 'stairs')
+save_fig_to_pdf(fullfile(plot_dir, 'iodplot1.pdf'))
 
 figure(2); clf
 titles_text = {'(a) Outputs', '(b) Inputs'};
 y_labels = {'$y(t)$', '$y_m(t)$', '$y_{model}(t)$'};
 make_iodmplot(Y, Y_m, Y_model, t, U, u_labels, y_labels, '$t$', ...
     nan(2), nan(2), titles_text, 'stairs')
+save_fig_to_pdf(fullfile(plot_dir, 'iodplot2.pdf'))
 
 
 %% Continuous-time 2x2 system
@@ -52,8 +60,10 @@ model = polyest(id_data, poly_order);
 figure(3); clf
 x_label = '$t$ (seconds)';
 make_iodplot(Y, Y_m, t, U, u_labels, y_labels, x_label)
+save_fig_to_pdf(fullfile(plot_dir, 'iodplot3.pdf'))
 
 figure(4); clf
 y_labels = string2latex({'y_1(t)', 'y_2(t)', 'y_{m,1}(t)', 'y_{m,2}(t)', ...
     'y_{model,1}(t)', 'y_{model,2}(t)'});
 make_iodmplot(Y, Y_m, Y_model, t, U, u_labels, y_labels, '$t$ (seconds)')
+save_fig_to_pdf(fullfile(plot_dir, 'iodplot4.pdf'))

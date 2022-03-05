@@ -2,6 +2,12 @@
 
 clear all; close all
 
+% Directory to save test plots
+plot_dir = 'plots';
+if ~isfolder(plot_dir)
+    mkdir(plot_dir)
+end
+
 
 %% discrete-time SISO system
 
@@ -19,6 +25,7 @@ figure(1)
 titles_text = {'(a) Outputs', '(b) Inputs'};
 make_ioplot(Y, t, U, u_labels, y_labels, '$t$', nan(2), nan(2), ...
     titles_text, 'stairs')
+save_fig_to_pdf(fullfile(plot_dir, 'ioplot1.pdf'))
 
 figure(2)
 x_label = '$t$ (seconds)';
@@ -26,6 +33,7 @@ y1_lim = [-1 1];
 y2_lim = [-1 1];
 make_ioplot(Y, t, U, u_labels, y_labels, x_label, y1_lim, y2_lim, ...
     {'', ''}, 'stairs')
+save_fig_to_pdf(fullfile(plot_dir, 'ioplot2.pdf'))
 
 
 %% Continuous-time 2x2 system
@@ -42,18 +50,20 @@ y_labels = {'$y_1(t)$', '$y_2(t)$'};
 
 figure(3)
 make_ioplot(Y, t, U, u_labels, y_labels)
+save_fig_to_pdf(fullfile(plot_dir, 'ioplot3.pdf'))
 
 figure(4)
 x_label = '$t$ (seconds)';
 y1_lim = [-1.5 1.5];
 y2_lim = [-1.5 1.5];
 make_ioplot(Y, t, U, u_labels, y_labels, x_label, y1_lim, y2_lim)
+save_fig_to_pdf(fullfile(plot_dir, 'ioplot4.pdf'))
 
 
 %% Discretre-time 4x4 system
 
-Ts = 2;
-nT = 25;
+Ts = 1;
+nT = 50;
 t = Ts*(0:nT)';
 U = zeros(nT+1, 4);
 U((t >= 2 & t < 25), 1) = 1;
@@ -73,3 +83,6 @@ y_labels = {'$y_1(t)$', '$y_2(t)$', '$y_2(t)$', '$y_4(t)$'};
 
 figure(5)
 make_ioplot(Y, t, U, u_labels, y_labels)
+save_fig_to_pdf(fullfile(plot_dir, 'ioplot5.pdf'))
+
+close all
