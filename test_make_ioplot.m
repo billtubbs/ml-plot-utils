@@ -37,6 +37,8 @@ save_fig_to_pdf(fullfile(plot_dir, 'ioplot2.pdf'))
 
 
 %% Continuous-time 2x2 system
+
+% Simulate continuous-time 2x2 system
 t = linspace(0, 10, 101)';
 nT = size(t, 1) - 1;
 U = zeros(nT+1,2);
@@ -48,8 +50,11 @@ G = [tf(1, [1 1]) 0;
 u_labels = {'$u_1(t)$', '$u_2(t)$'};
 y_labels = {'$y_1(t)$', '$y_2(t)$'};
 
+% Make input-output plot
 figure(3)
 make_ioplot(Y, t, U, u_labels, y_labels)
+
+% Save plot as pdf file
 save_fig_to_pdf(fullfile(plot_dir, 'ioplot3.pdf'))
 
 figure(4)
