@@ -1,9 +1,12 @@
 function make_ioplot(Y, t, U, u_labels, y_labels, x_label, y1_lim, ...
-    y2_lim, titles_text, kind)
+    y2_lim, titles_text, kind, intr)
 % make_ioplot(Y, t, U, u_labels, y_labels, x_label, y1_lim, ...
 %     y2_lim, titles_text, kind)
 % Time series plots of input and output signals
 
+    if nargin < 11
+        intr = 'latex';
+    end
     if nargin < 10
         kind = 'plot';
     end
@@ -21,9 +24,10 @@ function make_ioplot(Y, t, U, u_labels, y_labels, x_label, y1_lim, ...
     end
 
     ax1 = subplot(2,1,1);
-    make_tsplot(Y, t, y_labels, [], y1_lim, titles_text{1}, kind)
+    make_tsplot(Y, t, y_labels, [], y1_lim, titles_text{1}, kind, intr)
 
     ax2 = subplot(2,1,2);
-    make_tsplot(U, t, u_labels, x_label, y2_lim, titles_text{2}, 'stairs')
+    make_tsplot(U, t, u_labels, x_label, y2_lim, titles_text{2}, ...
+        'stairs', intr)
 
     linkaxes([ax1, ax2], 'x')

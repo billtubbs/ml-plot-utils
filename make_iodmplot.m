@@ -1,10 +1,13 @@
 function make_iodmplot(Y, Y_m, Y_model, t, U, u_labels, y_labels, ...
-    x_label, y1_lim, y2_lim, titles_text, kind)
+    x_label, y1_lim, y2_lim, titles_text, kind, intr)
 % make_iodmplot(Y, Y_m, Y_model, t, U, u_labels, y_labels, ...
-%     x_label, y1_lim, y2_lim, titles_text, kind)
+%     x_label, y1_lim, y2_lim, titles_text, kind, intr)
 % Time series plots of input signal, true output signal, measured
 % output, and model predicted output data.
-%
+
+    if nargin < 13
+        intr = 'latex';
+    end
     if nargin < 12
         kind = 'plot';
     end
@@ -45,18 +48,18 @@ function make_iodmplot(Y, Y_m, Y_model, t, U, u_labels, y_labels, ...
     set(ax1, 'ColorOrder', colors);
     plotf(t, Y_model, 'Linewidth', 2)
     ylim(axes_limits_with_margin([Y Y_m], 0.1, y1_lim, y1_lim))
-    set(gca, 'TickLabelInterpreter', 'latex')
+    set(gca, 'TickLabelInterpreter', intr)
     if numel(y_labels) > 2
         y_axis_labels = [y_labels(1), y_labels(2), {'... etc.'}];
-        ylabel(strjoin(y_axis_labels, ', '), 'Interpreter', 'latex')
+        ylabel(strjoin(y_axis_labels, ', '), 'Interpreter', intr)
     else
-        ylabel(strjoin(y_labels, ', '), 'Interpreter', 'latex')
+        ylabel(strjoin(y_labels, ', '), 'Interpreter', intr)
     end
     if numel(y_labels) > 1
-        legend(y_labels, 'Interpreter', 'latex', 'Location', 'best')
+        legend(y_labels, 'Interpreter', intr, 'Location', 'best')
     end
     if titles_text{1}
-        title(titles_text{1}, 'Interpreter', 'latex')
+        title(titles_text{1}, 'Interpreter', intr)
     end
     grid on
 

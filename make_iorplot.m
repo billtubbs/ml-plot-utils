@@ -1,9 +1,12 @@
 function make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
-    x_label, y1_lim, y2_lim, titles_text, kind)
+    x_label, y1_lim, y2_lim, titles_text, kind, intr)
 % make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
-%     x_label, y1_lim, y2_lim, titles_text, kind)
+%     x_label, y1_lim, y2_lim, titles_text, kind, intr)
 % Time series plots of input, output and reference signals
 
+    if nargin < 13
+        intr = 'latex';
+    end
     if nargin < 12
         kind = 'plot';
     end
@@ -42,20 +45,20 @@ function make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
     stairs(t, R, '--', 'Linewidth', 2)
 
     ylim(axes_limits_with_margin([Y R], 0.1, y1_lim, y1_lim))
-    set(gca, 'TickLabelInterpreter', 'latex')
+    set(gca, 'TickLabelInterpreter', intr)
 
     labels = [y_labels r_labels];
     if numel(y_labels) > 2
         y_axis_labels = [y_labels(1), r_labels(1), {'... etc.'}];
-        ylabel(strjoin(y_axis_labels, ', '), 'Interpreter', 'latex')
+        ylabel(strjoin(y_axis_labels, ', '), 'Interpreter', intr)
     else
-        ylabel(strjoin(y_labels, ', '), 'Interpreter', 'latex')
+        ylabel(strjoin(y_labels, ', '), 'Interpreter', intr)
     end
     if numel(labels) > 1
-        legend(labels, 'Interpreter', 'latex', 'Location', 'best')
+        legend(labels, 'Interpreter', intr, 'Location', 'best')
     end
     if titles_text{1}
-        title(titles_text{1}, 'Interpreter', 'latex')
+        title(titles_text{1}, 'Interpreter', intr)
     end
     grid on
 
