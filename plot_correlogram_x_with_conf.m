@@ -17,7 +17,7 @@ function plot_correlogram_x_with_conf(y, u, title_text, maxlag)
     stem(lags, yc, style, 'filled')
     hold on
     plot(lags, [uconf;lconf]*ones(size(lags)), 'r')
-    ylim(axes_limits_with_margin(yc, 0.05))
+    ylim(axes_limits_with_margin(yc, 0.05, [0 0]))
     xlabel('Lag')
     ylabel('$r_{yu}$','Interpreter','Latex')
     grid on

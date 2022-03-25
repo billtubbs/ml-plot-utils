@@ -20,7 +20,7 @@ function plot_correlogram_auto_conf(y, title_text, maxlag)
     stem(lags, yc, style, 'filled')
     hold on
     plot(lags, [uconf;lconf], 'r')
-    ylim(axes_limits_with_margin(yc, 0.05))
+    ylim(axes_limits_with_margin(yc, 0.05, [0 0]))
     xlabel('Lag')
     ylabel('$r_{yy}$','Interpreter','Latex')
     grid on
