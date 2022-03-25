@@ -46,6 +46,33 @@ save_fig_to_pdf('plots/tsstatplot4.pdf')
 
 <img src='plots/tsstatplot4.png' width=400>
 
+
+## 3. Correlograms
+
+Auto-correlogram plot with confidence bounds:
+
+```MATLAB
+data = readtable('test_data/tsdata1.csv');
+
+figure
+plot_correlogram_auto_conf(data.y4)
+save_fig_to_pdf('plots/corrplot1.pdf')
+```
+
+<img src='plots/corrplot1.png' width=400>
+
+Cross-correlogram plot with confidence bounds:
+
+```MATLAB
+data = readtable('test_data/tsdata2.csv');
+
+figure
+plot_correlogram_auto_conf(data.y4)
+save_fig_to_pdf('plots/corrplot2.pdf')
+```
+
+<img src='plots/corrplot2.png' width=400>
+
 ## Full contents
 
 Main plot functions
