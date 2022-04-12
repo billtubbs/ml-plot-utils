@@ -5,9 +5,6 @@ function save_fig_to_pdf(filename, h)
     if nargin < 2
         h = gcf;
     end
-    set(h, 'Units', 'Inches');
-    pos = get(h, 'Position');
-    set(h, 'PaperPositionMode', 'Auto', 'PaperUnits', 'Inches', ...
-        'PaperSize', pos(3:4))
-    print(h, filename, '-dpdf', '-r0')
+    % This existing function by Gabe Hoffmann works better
+    save2pdf(filename,h)
 end
