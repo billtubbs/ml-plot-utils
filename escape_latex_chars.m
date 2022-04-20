@@ -17,7 +17,7 @@ function s2 = escape_latex_chars(s1)
 %
     switch class(s1)
         case {'char', 'string'}
-            s2 = regexprep(s1, '[\\\^\_]', '\\$0');
+            s2 = regexprep(s1, '[\\\^\_%]', '\\$0');
         case 'cell'
             s2 = cellfun(@escape_latex_chars, s1, 'UniformOutput', false);
         otherwise
