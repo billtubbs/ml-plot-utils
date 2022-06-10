@@ -93,12 +93,10 @@ Utility functions
 - [axes_limits_with_margin.m](axes_limits_with_margin.m) - Calculates new axes limits based on the extreme values in the data with the option to add margins and a minimum range
 - [confidence_intervals_auto.m](confidence_intervals_auto.m) - Calculate lower and upper confidence limits for auto-correlation coefficients
 - [confidence_intervals_x.m](confidence_intervals_x.m) - Calculate lower and upper confidence limits for cross-correlation coefficients
-- [matrix_element_labels.m](matrix_element_labels.m) - Creates a cell array of labels with subscripts to represent the elements of a matrix
 - [ratios_of_corr_coefficients.m](ratios_of_corr_coefficients.m) - Calculates the ratios of correlation coefficients
 - [escape_latex_chars.m](escape_latex_chars.m) - Prevents text symbols such as '_' being interpreted as Latex
 - [save_fig_to_pdf.m](save_fig_to_pdf.m) - Saves a pdf document of the current figure with the paper size adjusted to correct size
 - [string2latex.m](string2latex.m) - Converts a string or a cell array of strings to latex input format
-- [vector_element_labels.m](vector_element_labels.m) - Creates a cell array of labels with subscripts
 
 Test scripts
 
@@ -107,7 +105,5 @@ Test scripts
 - [test_make_ioplot.m](test_make_ioplot.m)
 - [test_make_iorplot.m](test_make_iorplot.m)
 - [test_make_tsstatplot.m](test_make_tsstatplot.m)
-- [test_matrix_element_labels.m](test_matrix_element_labels.m)
 - [test_plot_correlograms.m](test_plot_correlograms.m)
 - [test_string2latex.m](test_string2latex.m)
-- [test_vector_element_labels.m](test_vector_element_labels.m)
