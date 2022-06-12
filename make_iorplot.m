@@ -26,13 +26,30 @@ function make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
     else
         x_label = string(x_label);
     end
+    if nargin < 7
+        if size(Y, 2) == 1
+            y_labels = "$y(t)$";
+        else
+            y_labels = compose("$y_{%d}(t)$", 1:size(Y, 2));
+        end
+    else
+        y_labels = string(y_labels);
+    end
+    if nargin < 6
+        if size(U, 2) == 1
+            u_labels = "$u(t)$";
+        else
+            u_labels = compose("$u_{%d}(t)$", 1:size(U, 2));
+        end
+    else
+        u_labels = string(u_labels);
+    end
     switch kind
         case 'plot'
             plotf = @plot;
         case 'stairs'
             plotf = @stairs;
     end
-    y_labels = string(y_labels);  % in case it is a char or cell array
 
     ax1 = subplot(2,1,1);
 
