@@ -12,7 +12,9 @@ function make_iodplot(Y, Y_m, t, U, u_labels, y_labels, ...
         kind = 'plot';
     end
     if nargin < 10
-        titles_text = {'(a) Outputs', '(b) Inputs'};
+        titles_text = ["(a) Outputs" "(b) Inputs"];
+    else
+        titles_text = string(titles_text);
     end
     if nargin < 9
         y2_lim = nan(2);
@@ -21,7 +23,9 @@ function make_iodplot(Y, Y_m, t, U, u_labels, y_labels, ...
         y1_lim = nan(2);
     end
     if nargin < 7
-        x_label = '$t$';
+        x_label = "$t$";
+    else
+        x_label = string(x_label);
     end
     switch kind
         case 'plot'
@@ -29,6 +33,7 @@ function make_iodplot(Y, Y_m, t, U, u_labels, y_labels, ...
         case 'stairs'
             plotf = @stairs;
     end
+    y_labels = string(y_labels);  % in case it is a char or cell array
 
     ax1 = subplot(3,1,1:2);
     ny = size(Y_m, 2);

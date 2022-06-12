@@ -11,7 +11,9 @@ function make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
         kind = 'plot';
     end
     if nargin < 11
-        titles_text = {'(a) Outputs', '(b) Inputs'};
+        titles_text = ["(a) Outputs" "(b) Inputs"];
+    else
+        titles_text = string(titles_text);
     end
     if nargin < 10
         y2_lim = nan(2);
@@ -20,7 +22,9 @@ function make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
         y1_lim = nan(2);
     end
     if nargin < 8
-        x_label = '$t$';
+        x_label = "$t$";
+    else
+        x_label = string(x_label);
     end
     switch kind
         case 'plot'
@@ -28,6 +32,7 @@ function make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
         case 'stairs'
             plotf = @stairs;
     end
+    y_labels = string(y_labels);  % in case it is a char or cell array
 
     ax1 = subplot(2,1,1);
 

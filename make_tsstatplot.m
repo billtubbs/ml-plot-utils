@@ -34,12 +34,11 @@ function make_tsstatplot(Y, t, y_labels, x_label, y_lim, area, line)
     if nargin < 4
         x_label = '$t$';
     end
+    y_labels = string(y_labels);  % in case it is a char or cell array
     if ~iscell(Y)
         Y = {Y};
-        assert(~iscell(y_labels));
-        y_labels = {y_labels};
     else
-        assert(iscell(y_labels));
+        assert(numel(y_labels) > 1);
     end
     line_labels = cell(1, numel(y_labels)*2);
     % Get color order
