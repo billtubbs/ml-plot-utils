@@ -11,6 +11,9 @@ end
 
 rng(0)
 
+
+%% Correlogram plot
+
 % Generate white noise
 Ts = 1;
 nT = 200;
@@ -68,10 +71,12 @@ plot_correlogram_auto_conf(ym, '', maxlag)
 save_fig_to_pdf(fullfile(plot_dir, 'correlogram_auto2.pdf'))
 
 
-% Cross-correlogram
+%% Cross-correlogram plot
 
 data = readtable('test_data/tsdata2.csv');
 figure(6)
 plot_correlogram_x_with_conf(data.y1, data.u1)
 save_fig_to_pdf(fullfile(plot_dir, 'correlogram_auto1.pdf'))
 
+
+close all

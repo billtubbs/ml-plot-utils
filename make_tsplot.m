@@ -10,27 +10,29 @@ function make_tsplot(Y, t, y_labels, x_label, y_lim, title_text, kind, ...
         kind = 'plot';
     end
     if nargin < 6
-        title_text = '';
+        title_text = "";
+    else
+        title_text = string(title_text);
     end
     if nargin < 5
         y_lim = nan(2);
     end
     if nargin < 4
-        x_label = '$t$';
+        x_label = "$t$";
+    else
+        x_label = string(x_label);
     end
+    y_labels = string(y_labels);
     switch kind
         case 'plot'
             plotf = @plot;
         case 'stairs'
             plotf = @stairs;
     end
-    if ~iscell(y_labels)
-        y_labels = {y_labels};
-    end
     plotf(t, Y, 'Linewidth', 2);
     ylim(axes_limits_with_margin(Y, 0.1, y_lim, y_lim))
     set(gca, 'TickLabelInterpreter', intr)
-    if x_label
+    if strlength(x_label) > 0
         xlabel(x_label, 'Interpreter', 'Latex')
     end
     if numel(y_labels) > 3
@@ -42,7 +44,7 @@ function make_tsplot(Y, t, y_labels, x_label, y_lim, title_text, kind, ...
     if numel(y_labels) > 1
         legend(y_labels, 'Interpreter', intr, 'Location', 'best')
     end
-    if title_text
+    if strlength(title_text) > 0
         title(title_text, 'Interpreter', intr)
     end
     grid on

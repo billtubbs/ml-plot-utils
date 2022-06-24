@@ -1,9 +1,14 @@
-function plot_correlogram_x_with_conf(y, u, title_text, maxlag)
+function plot_correlogram_x_with_conf(y, u, title_text, maxlag, intr)
+    if nargin < 5
+        intr = 'latex';
+    end
     if nargin < 4
         maxlag = 20;
     end
     if nargin < 3
-        title_text = 'Cross-Correlogram';
+        title_text = "Cross-Correlogram";
+    else
+        title_text = string(title_text);
     end
     [yc, lags] = xcov(y, u, maxlag, 'coeff');
     N = length(y);
@@ -18,12 +23,13 @@ function plot_correlogram_x_with_conf(y, u, title_text, maxlag)
     hold on
     plot(lags, [uconf;lconf]*ones(size(lags)), 'r')
     ylim(axes_limits_with_margin(yc, 0.05, [0 0]))
-    xlabel('Lag')
-    ylabel('$r_{yu}$','Interpreter','Latex')
+    set(gca, 'TickLabelInterpreter', intr)
+    xlabel("Lag", 'Interpreter', intr)
+    ylabel("$r_{yu}$", 'Interpreter', intr)
     grid on
-    if char(title_text)
-        title(title_text)
+    if strlength(title_text) > 0
+        title(title_text, 'Interpreter', intr)
     end
-    legend({'$r_{yu}$','$UCB(95\%)$','$LCB(95\%)$'},...
-        'Interpreter','Latex','Location','best')
+    legend({'$r_{yu}$', '$UCB(95\%)$', '$LCB(95\%)$'}, ...
+        'Interpreter', intr, 'Location', 'best')
 end

@@ -32,14 +32,23 @@ function make_tsstatplot(Y, t, y_labels, x_label, y_lim, area, line)
         y_lim = nan(2);
     end
     if nargin < 4
-        x_label = '$t$';
-    end
-    if ~iscell(Y)
-        Y = {Y};
-        assert(~iscell(y_labels));
-        y_labels = {y_labels};
+        x_label = "$t$";
     else
-        assert(iscell(y_labels));
+        x_label = string(x_label);
+    end
+    if nargin < 6
+        if size(Y, 2) == 1
+            y_labels = "$y(t)$";
+        else
+            y_labels = compose("$y_{%d}(t)$", 1:size(Y, 2));
+        end
+    else
+        y_labels = string(y_labels);
+    end
+    if isnumeric(Y)  % case of only one data group
+        Y = {Y};
+    else
+        assert(numel(y_labels) > 1);
     end
     line_labels = cell(1, numel(y_labels)*2);
     % Get color order
@@ -95,7 +104,7 @@ function make_tsstatplot(Y, t, y_labels, x_label, y_lim, area, line)
     end
     ylim(axes_limits_with_margin([Y_upper Y_lower], 0.1, y_lim, y_lim))
     set(gca, 'TickLabelInterpreter', 'latex')
-    if x_label
+    if strlength(x_label) > 0
         xlabel(x_label, 'Interpreter', 'Latex')
     end
     ylabel(strjoin(y_labels, ', '), 'Interpreter', 'latex')

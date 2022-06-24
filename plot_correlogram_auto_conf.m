@@ -1,9 +1,14 @@
-function plot_correlogram_auto_conf(y, title_text, maxlag)
+function plot_correlogram_auto_conf(y, title_text, maxlag, intr)
+    if nargin < 4
+        intr = 'latex';
+    end
     if nargin < 3
         maxlag = 20;
     end
     if nargin < 2
-        title_text = 'Correlogram';
+        title_text = "Correlogram";
+    else
+        title_text = string(title_text);
     end
     [yc, lags] = xcov(y, maxlag, 'coeff');
     assert(lags(maxlag+1) == 0)
@@ -21,12 +26,13 @@ function plot_correlogram_auto_conf(y, title_text, maxlag)
     hold on
     plot(lags, [uconf;lconf], 'r')
     ylim(axes_limits_with_margin(yc, 0.05, [0 0]))
-    xlabel('Lag')
-    ylabel('$r_{yy}$','Interpreter','Latex')
+    set(gca, 'TickLabelInterpreter', intr)
+    xlabel("Lag", 'Interpreter', intr)
+    ylabel("$r_{yu}$", 'Interpreter', intr)
     grid on
-    if char(title_text)
-        title(title_text)
+    if strlength(title_text) > 0
+        title(title_text, 'Interpreter', intr)
     end
-    legend({'$r_{yy}$','$UCB(95\%)$','$LCB(95\%)$'},...
-        'Interpreter','Latex','Location','best')
+    legend({'$r_{yy}$', '$UCB(95\%)$', '$LCB(95\%)$'}, ...
+        'Interpreter', intr, 'Location', 'best')
 end

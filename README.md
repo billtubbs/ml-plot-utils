@@ -15,7 +15,7 @@ U(t >= 3, 2) = -1;
 G = [tf(1, [1 1]) 0;
      0            tf(1, [2 1])];
 [Y, t] = lsim(G,U,t);
-u_labels = {'$u_1(t)$', '$u_2(t)$'};
+u_labels = {'$u_1(t)$', '$u_2(t)$'};  % or ["$u_1(t)$" "$u_2(t)$"]
 y_labels = {'$y_1(t)$', '$y_2(t)$'};
 
 % Make input-output plot
@@ -23,10 +23,10 @@ figure
 make_ioplot(Y, t, U, u_labels, y_labels)
 
 % Save plot as pdf file
-save_fig_to_pdf('plots/ioplot3.pdf')
+save_fig_to_pdf('ioplot3.pdf')
 ```
 
-<img src='plots/ioplot3.png' width=400>
+<img src='images/ioplot3.png' width=400>
 
 ### 2. Time-series plot of the statistics of a group of signals.
 
@@ -41,10 +41,10 @@ y_labels = {'$y_1(t)$', '$y_2(t)$'};
 make_tsstatplot(Y, t, y_labels, '$t$ (mins)', nan(2), 'minmax', 'mean')
 
 % Save plot as pdf file
-save_fig_to_pdf('plots/tsstatplot4.pdf')
+save_fig_to_pdf('tsstatplot4.pdf')
 ```
 
-<img src='plots/tsstatplot4.png' width=400>
+<img src='images/tsstatplot4.png' width=400>
 
 
 ## 3. Correlograms
@@ -56,10 +56,10 @@ data = readtable('test_data/tsdata1.csv');
 
 figure
 plot_correlogram_auto_conf(data.y4)
-save_fig_to_pdf('plots/corrplot1.pdf')
+save_fig_to_pdf('corrplot1.pdf')
 ```
 
-<img src='plots/corrplot1.png' width=400>
+<img src='images/corrplot1.png' width=400>
 
 Cross-correlogram plot with confidence bounds:
 
@@ -67,11 +67,11 @@ Cross-correlogram plot with confidence bounds:
 data = readtable('test_data/tsdata2.csv');
 
 figure
-plot_correlogram_auto_conf(data.y4)
-save_fig_to_pdf('plots/corrplot2.pdf')
+plot_correlogram_auto_conf(data.y2)
+save_fig_to_pdf('corrplot2.pdf')
 ```
 
-<img src='plots/corrplot2.png' width=400>
+<img src='images/corrplot2.png' width=400>
 
 ## Full contents
 
@@ -93,12 +93,10 @@ Utility functions
 - [axes_limits_with_margin.m](axes_limits_with_margin.m) - Calculates new axes limits based on the extreme values in the data with the option to add margins and a minimum range
 - [confidence_intervals_auto.m](confidence_intervals_auto.m) - Calculate lower and upper confidence limits for auto-correlation coefficients
 - [confidence_intervals_x.m](confidence_intervals_x.m) - Calculate lower and upper confidence limits for cross-correlation coefficients
-- [matrix_element_labels.m](matrix_element_labels.m) - Creates a cell array of labels with subscripts to represent the elements of a matrix
 - [ratios_of_corr_coefficients.m](ratios_of_corr_coefficients.m) - Calculates the ratios of correlation coefficients
 - [escape_latex_chars.m](escape_latex_chars.m) - Prevents text symbols such as '_' being interpreted as Latex
 - [save_fig_to_pdf.m](save_fig_to_pdf.m) - Saves a pdf document of the current figure with the paper size adjusted to correct size
 - [string2latex.m](string2latex.m) - Converts a string or a cell array of strings to latex input format
-- [vector_element_labels.m](vector_element_labels.m) - Creates a cell array of labels with subscripts
 
 Test scripts
 
@@ -106,8 +104,8 @@ Test scripts
 - [test_make_iodplot.m](test_make_iodplot.m)
 - [test_make_ioplot.m](test_make_ioplot.m)
 - [test_make_iorplot.m](test_make_iorplot.m)
+- [test_make_tsplot.m](test_make_tsplot.m)
 - [test_make_tsstatplot.m](test_make_tsstatplot.m)
-- [test_matrix_element_labels.m](test_matrix_element_labels.m)
+- [test_make_waterfall_plot.m](test_make_waterfall_plot.m)
 - [test_plot_correlograms.m](test_plot_correlograms.m)
 - [test_string2latex.m](test_string2latex.m)
-- [test_vector_element_labels.m](test_vector_element_labels.m)

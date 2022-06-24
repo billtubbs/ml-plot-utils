@@ -12,7 +12,9 @@ function make_iodplot(Y, Y_m, t, U, u_labels, y_labels, ...
         kind = 'plot';
     end
     if nargin < 10
-        titles_text = {'(a) Outputs', '(b) Inputs'};
+        titles_text = ["(a) Outputs" "(b) Inputs"];
+    else
+        titles_text = string(titles_text);
     end
     if nargin < 9
         y2_lim = nan(2);
@@ -21,7 +23,27 @@ function make_iodplot(Y, Y_m, t, U, u_labels, y_labels, ...
         y1_lim = nan(2);
     end
     if nargin < 7
-        x_label = '$t$';
+        x_label = "$t$";
+    else
+        x_label = string(x_label);
+    end
+    if nargin < 6
+        if size(Y, 2) == 1
+            y_labels = "$y(t)$";
+        else
+            y_labels = compose("$y_{%d}(t)$", 1:size(Y, 2));
+        end
+    else
+        y_labels = string(y_labels);
+    end
+    if nargin < 5
+        if size(U, 2) == 1
+            u_labels = "$u(t)$";
+        else
+            u_labels = compose("$u_{%d}(t)$", 1:size(U, 2));
+        end
+    else
+        u_labels = string(u_labels);
     end
     switch kind
         case 'plot'
