@@ -36,19 +36,18 @@ function make_tsstatplot(Y, t, y_labels, x_label, y_lim, area, line)
     else
         x_label = string(x_label);
     end
+    if isnumeric(Y)  % case of only one data group
+        Y = {Y};
+    end
     if nargin < 6
-        if size(Y, 2) == 1
+        if numel(Y) == 1
             y_labels = "$y(t)$";
         else
-            y_labels = compose("$y_{%d}(t)$", 1:size(Y, 2));
+            y_labels = compose("$y_{%d}(t)$", 1:numel(Y));
         end
     else
         y_labels = string(y_labels);
-    end
-    if isnumeric(Y)  % case of only one data group
-        Y = {Y};
-    else
-        assert(numel(y_labels) > 1);
+        assert(numel(y_labels) == numel(Y));
     end
     line_labels = cell(1, numel(y_labels)*2);
     % Get color order
