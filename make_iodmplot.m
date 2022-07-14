@@ -71,8 +71,8 @@ function make_iodmplot(Y, Y_m, Y_model, t, U, u_labels, y_labels, ...
     plotf(t, Y_model, 'Linewidth', 2)
     ylim(axes_limits_with_margin([Y Y_m], 0.1, y1_lim, y1_lim))
     set(gca, 'TickLabelInterpreter', intr)
-    if numel(y_labels) > 2
-        y_axis_labels = [y_labels(1), y_labels(2), {'... etc.'}];
+    if numel(y_labels) > 3
+        y_axis_labels = [y_labels(1), y_labels(2), {'...'}];
         ylabel(strjoin(y_axis_labels, ', '), 'Interpreter', intr)
     else
         ylabel(strjoin(y_labels, ', '), 'Interpreter', intr)
