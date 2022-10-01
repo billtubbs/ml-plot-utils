@@ -16,10 +16,10 @@ function make_ioplot(Y, t, U, u_labels, y_labels, x_label, y1_lim, ...
         titles_text = string(titles_text);
     end
     if nargin < 8
-        y2_lim = nan(2);
+        y2_lim = nan(1, 2);
     end
     if nargin < 7
-        y1_lim = nan(2);
+        y1_lim = nan(1, 2);
     end
     if nargin < 6
         x_label = "$t$";

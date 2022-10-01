@@ -28,12 +28,14 @@ function make_tsplot(Y, t, y_labels, x_label, y_lim, title_text, kind, ...
             plotf = @plot;
         case 'stairs'
             plotf = @stairs;
+        otherwise
+            error("ValueError: kind")
     end
     plotf(t, Y, 'Linewidth', 2);
     ylim(axes_limits_with_margin(Y, 0.1, y_lim, y_lim))
     set(gca, 'TickLabelInterpreter', intr)
     if strlength(x_label) > 0
-        xlabel(x_label, 'Interpreter', 'Latex')
+        xlabel(x_label, 'Interpreter', intr)
     end
     if numel(y_labels) > 3
         y_axis_labels = [y_labels(1), {'...'}, y_labels(end)];
