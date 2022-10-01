@@ -5,7 +5,7 @@ MATLAB scripts to facilitate common plotting tasks for data from dynamical syste
 
 ### 1. Input-output plots for a dynamic system
 
-```MATLAB
+```lang-matlab
 % Simulate continuous-time 2x2 system
 t = linspace(0, 10, 101)';
 nT = size(t, 1) - 1;
@@ -23,14 +23,14 @@ figure
 make_ioplot(Y, t, U, u_labels, y_labels)
 
 % Save plot as pdf file
-save_fig_to_pdf('ioplot3.pdf')
+save_fig_to_pdf('plots/ioplot3.pdf')
 ```
 
 <img src='images/ioplot3.png' width=400>
 
 ### 2. Time-series plot of the statistics of a group of signals.
 
-```MATLAB
+```lang-matlab
 % Generate two groups of 10 random signals
 t = 0.5*(0:20)';
 Y = {randn(21, 10), randn(21, 10)+2*sin(t)};
@@ -41,7 +41,7 @@ y_labels = {'$y_1(t)$', '$y_2(t)$'};
 make_tsstatplot(Y, t, y_labels, '$t$ (mins)', nan(2), 'minmax', 'mean')
 
 % Save plot as pdf file
-save_fig_to_pdf('tsstatplot4.pdf')
+save_fig_to_pdf('plots/tsstatplot4.pdf')
 ```
 
 <img src='images/tsstatplot4.png' width=400>
@@ -51,27 +51,58 @@ save_fig_to_pdf('tsstatplot4.pdf')
 
 Auto-correlogram plot with confidence bounds:
 
-```MATLAB
+```lang-matlab
 data = readtable('test_data/tsdata1.csv');
 
 figure
 plot_correlogram_auto_conf(data.y4)
-save_fig_to_pdf('corrplot1.pdf')
+save_fig_to_pdf('plots/corrplot1.pdf')
 ```
 
 <img src='images/corrplot1.png' width=400>
 
 Cross-correlogram plot with confidence bounds:
 
-```MATLAB
+```lang-matlab
 data = readtable('test_data/tsdata2.csv');
 
 figure
 plot_correlogram_auto_conf(data.y2)
-save_fig_to_pdf('corrplot2.pdf')
+save_fig_to_pdf('plots/corrplot2.pdf')
 ```
 
 <img src='images/corrplot2.png' width=400>
+
+## 4. Step response plots
+
+Make a matrix of the step responses of SISO or MIMO linear systems. Similar 
+to MATLAB's built-in `step` plot function but with more control over formatting
+and labelling.
+
+```lang-matlab
+% Define 2x2 system
+s = tf('s');
+G11 = -0.7 / (1 + 8.5*s);
+G12 = -G11;
+G21 = 1.5 / (1 + 16*s);
+G22 = G21;
+Gc = [G11 G12; G21 G22];
+Gc.InputName = ["CW flow", "HW flow"];
+Gc.OutputName = ["Temperature", "Level"];
+
+% Make into discrete system
+Ts = 1;
+Gd = c2d(Gc,Ts,'zoh');
+
+% Plot step responses
+figure(8)
+nT = 100;
+t = Ts*(0:nT)';
+make_stepresp_plots(Gd, t)
+save_fig_to_pdf('plots/stepresp_plots.pdf')
+```
+
+<img src='images/stepresp_plots.png' width=400>
 
 ## Full contents
 
@@ -85,8 +116,10 @@ Main plot functions
 - [make_tsstatplot.m](make_tsstatplot.m) - Two time-series plots of the statistics of groups of signals to show variation
 - [plot_correlogram_auto_conf.m](plot_correlogram_auto_conf.m) - Correlogram of auto-correlation coefficients incl. confidence limits
 - [plot_correlogram_x_with_conf.m](plot_correlogram_x_with_conf.m) - Correlogram of cross-correlation coefficients incl. confidence limits
-- [plot_ratios_of_corr_coefficients.m](plot_ratios_of_corr_coefficients.m) - Bar plot of ratios of consecutive correlation coefficients.
+- [plot_ratios_of_corr_coefficients.m](plot_ratios_of_corr_coefficients.m) - Bar plot of ratios of consecutive correlation coefficients
 - [show_waterfall_plot.m](show_waterfall_plot.m) - Waterfall plot of multiple time series
+- [make_stepresp_plot.m](make_stepresp_plot.m) - Step response plot of a SISO dynamical system
+- [make_stepresp_plots.m](make_stepresp_plots.m) - Matrix of response plots of a MIMO dynamical system.
 
 Utility functions
 
