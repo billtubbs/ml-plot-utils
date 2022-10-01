@@ -80,3 +80,28 @@ kind = 'stairs';
 intr = 'none';
 make_stepresp_plots(sys, t, u_labels, y_labels, x_label, y_lims, ...
       [], U0, kind, intr)
+
+
+%% MIMO system example from ReadMe.md file
+
+% Define 2x2 system
+s = tf('s');
+G11 = -0.7 / (1 + 8.5*s);
+G12 = -G11;
+G21 = 1.5 / (1 + 16*s);
+G22 = G21;
+Gc = [G11 G12; G21 G22];
+Gc.InputName = ["CW flow", "HW flow"];
+Gc.OutputName = ["Temperature", "Level"];
+
+% Make into discrete system
+Ts = 1;
+Gd = c2d(Gc,Ts,'zoh');
+
+% Plot step responses
+figure(8)
+nT = 100;
+t = Ts*(0:nT)';
+make_stepresp_plots(Gd, t)
+
+
