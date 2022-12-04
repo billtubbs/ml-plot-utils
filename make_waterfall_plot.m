@@ -24,7 +24,9 @@ function p = make_waterfall_plot(t, Z, z_lim, ax_labels, view_angles)
     xlabel(ax_labels{1}, 'Interpreter', 'Latex')
     ylabel(ax_labels{2}, 'Interpreter', 'Latex')
     zlabel(ax_labels{3}, 'Interpreter', 'Latex')
-    zlim(z_lim);
+    if ~isempty(z_lim)
+        zlim(z_lim);
+    end
     set(gca, 'TickLabelInterpreter', 'latex')
     set(p, 'FaceColor', 'flat');
     set(p, 'EdgeColor', 'k');
