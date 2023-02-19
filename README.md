@@ -47,7 +47,7 @@ save_fig_to_pdf('plots/tsstatplot4.pdf')
 <img src='images/tsstatplot4.png' width=400>
 
 
-## 3. Correlograms
+### 3. Correlograms
 
 Auto-correlogram plot with confidence bounds:
 
@@ -73,7 +73,7 @@ save_fig_to_pdf('plots/corrplot2.pdf')
 
 <img src='images/corrplot2.png' width=400>
 
-## 4. Step response plots
+### 4. Step response plots
 
 Make a matrix of the step responses of SISO or MIMO linear systems. Similar 
 to MATLAB's built-in `step` plot function but with more control over formatting
@@ -113,7 +113,8 @@ Main plot functions
 - [make_iorplot.m](make_iorplot.m) - Two time series plots of input, output and reference signals
 - [make_iodplot.m](make_iodplot.m) - Two time series plots of input signal, true output signal, and measured output data
 - [make_iodmplot.m](make_iodmplot.m) - Two time series plots of input signal, true output signal, measured output data, and model output
-- [make_tsstatplot.m](make_tsstatplot.m) - Two time-series plots of the statistics of groups of signals to show variation
+- [make_statplot.m](make_statplot.m) - Time-series plot of the mean (or median), lower, and upper bounds of one or more variables
+- [make_tsstatplot.m](make_tsstatplot.m) - Time-series plot of mean (or median), lower, and upper bounds of one or more groups of signals
 - [plot_correlogram_auto_conf.m](plot_correlogram_auto_conf.m) - Correlogram of auto-correlation coefficients incl. confidence limits
 - [plot_correlogram_x_with_conf.m](plot_correlogram_x_with_conf.m) - Correlogram of cross-correlation coefficients incl. confidence limits
 - [plot_ratios_of_corr_coefficients.m](plot_ratios_of_corr_coefficients.m) - Bar plot of ratios of consecutive correlation coefficients
