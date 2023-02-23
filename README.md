@@ -182,6 +182,8 @@ Test scripts
 - [test_make_iodplot.m](test_make_iodplot.m)
 - [test_make_ioplot.m](test_make_ioplot.m)
 - [test_make_iorplot.m](test_make_iorplot.m)
+- [test_make_statplots.m](test_make_statplots.m)
+- [test_make_stepresp_plots.m](test_make_stepresp_plots.m)
 - [test_make_tsplot.m](test_make_tsplot.m)
 - [test_make_tsstatplot.m](test_make_tsstatplot.m)
 - [test_make_waterfall_plot.m](test_make_waterfall_plot.m)
