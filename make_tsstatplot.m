@@ -91,31 +91,7 @@ function make_tsstatplot(Y, t, y_labels, x_label, y_lim, area, line)
     end
 
     % Generate plot
-    make_statplot(Y_line, Y_lower, Y_upper, t, y_labels, ...
-        line, area_label, x_label, y_lim)
-
-% PREVIOUS CODE
-%         % Modify colors if plotting more than one group
-%         if numel(Y) > 1
-%             colors = get(gca,'colororder');
-%         end
-%         % Make filled area plot
-%         inBetween = [Y_lower; flip(Y_upper)];
-%         t2 = [t; flip(t)];
-%         fill(t2, inBetween, colors(iy, :), 'LineStyle', 'none'); 
-%         alpha(.25); hold on
-%         % Add line plot
-%         h = plot(t, Y_line, 'Linewidth', 2);
-%         %set(h, {'color'}, {colors(1, :); colors(2, :)});
-%         set(h, {'color'}, {colors(iy, :)});
-%     end
-%     ylim(axes_limits_with_margin([Y_upper Y_lower], 0.1, y_lim, y_lim))
-%     set(gca, 'TickLabelInterpreter', 'latex')
-%     if strlength(x_label) > 0
-%         xlabel(x_label, 'Interpreter', 'Latex')
-%     end
-%     ylabel(strjoin(y_labels, ', '), 'Interpreter', 'latex')
-%     legend(line_labels, 'Interpreter', 'latex', 'Location', 'best')
-%     grid on
+    make_statplot(Y_line, Y_lower, Y_upper, t, x_label, y_labels, ...
+        line, area_label, y_lim)
 
 end
