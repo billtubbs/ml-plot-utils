@@ -15,7 +15,7 @@ f = @sin;
 
 % Generate data sample
 n = 8;
-sigma_M = 0.1;
+sigma_M = 0.1;  % measurement noise
 x_d = rand(n, 1)*3;
 y_d = sin(x_d) + sigma_M*randn(n, 1);
 
@@ -29,7 +29,7 @@ gpr_model = fitrgp(x_d, y_d, 'FitMethod', 'none', ...
 %gpr_model = fitrgp(x_d, y_d, 'Basis', 'linear', ...
 %      'FitMethod', 'exact', 'PredictMethod', 'exact');
 
-% Make new predictions
+% Make new predictions with model
 x = linspace(0, 3, 101)';
 [Y_pred, ~, Y_pred_int] = predict(gpr_model, x);
 
