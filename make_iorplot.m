@@ -28,6 +28,15 @@ function make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
     end
     if nargin < 7
         if size(Y, 2) == 1
+            r_labels = "$r(t)$";
+        else
+            r_labels = compose("$r_{%d}(t)$", 1:size(Y, 2));
+        end
+    else
+        r_labels = string(r_labels);
+    end
+    if nargin < 6
+        if size(Y, 2) == 1
             y_labels = "$y(t)$";
         else
             y_labels = compose("$y_{%d}(t)$", 1:size(Y, 2));
@@ -35,7 +44,7 @@ function make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
     else
         y_labels = string(y_labels);
     end
-    if nargin < 6
+    if nargin < 5
         if size(U, 2) == 1
             u_labels = "$u(t)$";
         else
@@ -58,7 +67,7 @@ function make_iorplot(Y, t, U, R, u_labels, y_labels, r_labels, ...
     nr = size(R, 2);
     colors = get(ax1, 'ColorOrder');
     if ny > 1 || nr > 1
-        colors(ny+1:ny+nr, :) = colors(1:ny, :);
+        colors(ny+1:ny*2, :) = colors(1:ny, :);
     end
     set(ax1, 'ColorOrder', colors);
 
