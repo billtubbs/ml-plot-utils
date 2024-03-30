@@ -1,4 +1,4 @@
-function make_area_step_plot(x, Y, varargin)
+function a = make_area_step_plot(x, Y, varargin)
 % make_area_step_plot(x, Y, varargin)
 % makes a stacked area plot with discrete step-changes similar
 % to a stairs plot.
@@ -25,5 +25,5 @@ function make_area_step_plot(x, Y, varargin)
     X = [x x]';
     X2 = X(2:end-1)';
     Y2 = reshape(permute(cat(3, Y, Y), [3 1 2]), [], ny);
-    area(X2, Y2, varargin{:})
+    a = area(X2, Y2, varargin{:});
 end
