@@ -19,12 +19,16 @@ make_area_step_plot(x, Y(:, 1))
 save_fig_to_pdf(fullfile(plot_dir, 'area_step_plot1.pdf'))
 
 figure(2)
-make_area_step_plot(x, Y)
+make_area_step_plot(x, Y(:, 1), 'FaceColor', 'red')
 save_fig_to_pdf(fullfile(plot_dir, 'area_step_plot2.pdf'))
 
-% Test with last row in Y missing (should be the same)
 figure(3)
-make_area_step_plot(x, Y(1:end-1, :))
+make_area_step_plot(x, Y)
 save_fig_to_pdf(fullfile(plot_dir, 'area_step_plot3.pdf'))
+
+% Test with last row in Y missing (should be the same)
+figure(4)
+make_area_step_plot(x, Y(1:end-1, :))
+save_fig_to_pdf(fullfile(plot_dir, 'area_step_plot4.pdf'))
 
 close all

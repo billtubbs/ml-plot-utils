@@ -1,5 +1,5 @@
-function make_area_step_plot(x, Y)
-% make_area_step_plot(x, Y)
+function make_area_step_plot(x, Y, varargin)
+% make_area_step_plot(x, Y, varargin)
 % makes a stacked area plot with discrete step-changes similar
 % to a stairs plot.
 %
@@ -10,6 +10,8 @@ function make_area_step_plot(x, Y)
 %     y-values of steps. If Y has the same number of rows as
 %     x, the last row is ignored because the second-last step
 %     ends at x(end).
+%   varargin : cell
+%     Other arguments to pass to built-in area plot function.
 %
 % Example:
 % >> x = (1:10)';
@@ -23,5 +25,5 @@ function make_area_step_plot(x, Y)
     X = [x x]';
     X2 = X(2:end-1)';
     Y2 = reshape(permute(cat(3, Y, Y), [3 1 2]), [], ny);
-    area(X2, Y2)
+    area(X2, Y2, varargin{:})
 end
