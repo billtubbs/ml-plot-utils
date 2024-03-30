@@ -1,5 +1,5 @@
 # ml-plot-utils
-MATLAB scripts to facilitate common plotting tasks for data from dynamical systems simulations.  All the plots use Latex fonts.
+MATLAB scripts to facilitate common plotting tasks for dynamical systems simulations.  All the plots use Latex fonts.
 
 ## Examples
 
@@ -145,7 +145,7 @@ save_fig_to_pdf('plots/corrplot2.pdf')
 
 <img src='images/corrplot2.png' width=400>
 
-## Full contents
+## Full list of functions
 
 Main plot functions
 
@@ -165,6 +165,7 @@ Main plot functions
 - [show_waterfall_plot.m](show_waterfall_plot.m) - Waterfall plot of multiple time series
 - [make_stepresp_plot.m](make_stepresp_plot.m) - Step response plot of a SISO dynamical system
 - [make_stepresp_plots.m](make_stepresp_plots.m) - Matrix of response plots of a MIMO dynamical system.
+- [make_area_step_plot.m](make_area_step_plot.m) - Stacked area plot with discrete step changes similar to a stairs plot.
 
 Utility functions
 
@@ -189,3 +190,5 @@ Test scripts
 - [test_make_waterfall_plot.m](test_make_waterfall_plot.m)
 - [test_plot_correlograms.m](test_plot_correlograms.m)
 - [test_string2latex.m](test_string2latex.m)
+- [test_make_area_step_plot.m](test_make_area_step_plot.m)
+
